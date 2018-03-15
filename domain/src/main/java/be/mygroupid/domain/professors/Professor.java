@@ -2,7 +2,7 @@ package be.mygroupid.domain.professors;
 // copied code from example exercise
 public class Professor {
 
-    private String id;
+    private Integer id;
     private String firstname;
     private String lastname;
 
@@ -10,17 +10,16 @@ public class Professor {
 
     }
 
-    Professor(String id, String firstname, String lastname) {
-        this.id = id;
+    Professor(String firstname, String lastname) {
         this.firstname = firstname;
         this.lastname = lastname;
     }
 
-    public String getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -42,7 +41,7 @@ public class Professor {
 
     public static class ProfessorBuilder {
 
-        private String id;
+        private Integer id;
         private String firstname;
         private String lastname;
 
@@ -58,7 +57,7 @@ public class Professor {
             return professor;
         }
 
-        public ProfessorBuilder withId(String id) {
+        public ProfessorBuilder withId(Integer id) {
             this.id = id;
             return this;
         }

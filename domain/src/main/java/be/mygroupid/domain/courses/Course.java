@@ -2,26 +2,26 @@ package be.mygroupid.domain.courses;
 
 public class Course {
 
-    private String id;
+    private Integer id;
     private String name;
     private double studyPoints;
     private Category category;
-    private String professorId;
+    private Integer professorId;
 
     private Course() {}
 
-    Course(String name, double studyPoints, Category category, String professorId) {
+    Course(String name, double studyPoints, Category category, Integer professorId) {
         this.name = name;
         this.studyPoints = studyPoints;
         this.category = category;
         this.professorId = professorId;
     }
 
-    public String getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -49,21 +49,21 @@ public class Course {
         this.category = category;
     }
 
-    public String getProfessorId() {
+    public Integer getProfessorId() {
         return professorId;
     }
 
-    public void setProfessorId(String professorId) {
+    public void setProfessorId(Integer professorId) {
         this.professorId = professorId;
     }
 
     public static class CourseBuilder {
 
-        private String id;
+        private Integer id;
         private String name;
         private double studyPoints;
         private Category category;
-        private String professorId;
+        private Integer professorId;
 
         private CourseBuilder() {}
 
@@ -79,7 +79,7 @@ public class Course {
             return course;
         }
 
-        public CourseBuilder withId(String id) {
+        public CourseBuilder withId(Integer id) {
             this.id = id;
             return this;
         }
@@ -99,7 +99,7 @@ public class Course {
             return this;
         }
 
-        public CourseBuilder withProfessorId(String professorId) {
+        public CourseBuilder withProfessorId(Integer professorId) {
             this.professorId = professorId;
             return this;
         }
