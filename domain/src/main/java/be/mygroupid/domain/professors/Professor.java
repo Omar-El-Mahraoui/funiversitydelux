@@ -1,8 +1,8 @@
 package be.mygroupid.domain.professors;
-
+// copied code from example exercise
 public class Professor {
 
-    private int id;
+    private String id;
     private String firstname;
     private String lastname;
 
@@ -10,17 +10,17 @@ public class Professor {
 
     }
 
-    public Professor(int id, String firstname, String lastname) {
+    Professor(String id, String firstname, String lastname) {
         this.id = id;
         this.firstname = firstname;
         this.lastname = lastname;
     }
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 
@@ -42,9 +42,37 @@ public class Professor {
 
     public static class ProfessorBuilder {
 
-        private int id;
+        private String id;
         private String firstname;
         private String lastname;
 
+        private ProfessorBuilder() {}
+
+        public static ProfessorBuilder professor() { return new ProfessorBuilder(); }
+
+        public Professor build() {
+            Professor professor = new Professor();
+            professor.setId(id);
+            professor.setFirstname(firstname);
+            professor.setLastname(lastname);
+            return professor;
+        }
+
+        public ProfessorBuilder withId(String id) {
+            this.id = id;
+            return this;
+        }
+
+        public ProfessorBuilder withFirstname(String firstname) {
+            this.firstname = firstname;
+            return this;
+        }
+
+        public ProfessorBuilder withLastname(String lastname) {
+            this.lastname = lastname;
+            return this;
+        }
+
     }
+
 }
