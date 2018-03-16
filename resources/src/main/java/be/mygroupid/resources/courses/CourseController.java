@@ -1,7 +1,6 @@
 package be.mygroupid.resources.courses;
 
 
-import be.mygroupid.domain.courses.Course;
 import be.mygroupid.services.courses.CourseService;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -9,6 +8,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.inject.Inject;
 import javax.ws.rs.QueryParam;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
@@ -35,9 +35,10 @@ public class CourseController {
                 .collect(Collectors.toList());
     }
 
-    @GetMapping(path = "/{id}", produces = APPLICATION_JSON_VALUE)
+    @GetMapping(path="/{search}", produces = APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.OK)
-    public List<CourseDto> getCoursesWithSpecifiedStudyPoints(@QueryParam("studypoints") double studyPoints) {
+    public  @ResponseBody List<CourseDto>
+                getAllCoursesWithSpecifiedStudyPoints(@RequestParam Integer studyPoints) {
         return courseService.getCourses().stream()
                 .filter(course->course.getStudyPoints() == studyPoints)
                 .map(courseMapper::toDto)
