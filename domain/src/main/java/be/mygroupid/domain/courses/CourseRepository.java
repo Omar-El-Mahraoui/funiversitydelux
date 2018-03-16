@@ -12,7 +12,7 @@ public class CourseRepository {
     public CourseRepository() {
         this.courses = new HashMap<Integer, Course>();
         storeCourse(new Course("java course 1",5.0, Category.COMPUTER_SCIENCES1, 0));
-        storeCourse(new Course("java course 2",6.0, Category.COMPUTER_SCIENCES2, 1));
+        storeCourse(new Course("java course 2",5.0, Category.COMPUTER_SCIENCES2, 1));
         storeCourse(new Course("java course 3",7.0, Category.COMPUTER_SCIENCES3, 2));
     }
 

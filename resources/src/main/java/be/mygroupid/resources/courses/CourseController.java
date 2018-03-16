@@ -35,10 +35,9 @@ public class CourseController {
                 .collect(Collectors.toList());
     }
 
-    @GetMapping(path="/{search}", produces = APPLICATION_JSON_VALUE)
+    @GetMapping(path = "/getCoursesByStudyPoints/{studyPoints}", produces = APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.OK)
-    public  @ResponseBody List<CourseDto>
-                getAllCoursesWithSpecifiedStudyPoints(@RequestParam Integer studyPoints) {
+    public  List<CourseDto> getAllCoursesWithSpecifiedStudyPoints(@PathVariable("studyPoints") Integer studyPoints) {
         return courseService.getCourses().stream()
                 .filter(course->course.getStudyPoints() == studyPoints)
                 .map(courseMapper::toDto)
