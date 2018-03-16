@@ -43,14 +43,16 @@ public class ProfessorController {
 
     @PostMapping(consumes = APPLICATION_JSON_VALUE, produces = APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.CREATED)
-    public ProfessorDto createProfessor(@RequestBody Professor professor) {
+    public ProfessorDto createProfessor(@RequestBody ProfessorDto professorDto) {
+        Professor professor = professorMapper.toDomain(professorDto);
         return professorMapper
                 .toDto(professorService.createProfessor(professor));
     }
 
     @PutMapping(path = "/{id}", consumes = APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.OK)
-    public ProfessorDto updateProfessor(@PathVariable Integer id, @RequestBody Professor professor) {
+    public ProfessorDto updateProfessor(@PathVariable Integer id, @RequestBody ProfessorDto professorDto) {
+        Professor professor = professorMapper.toDomain(professorDto);
         return professorMapper
                 .toDto(professorService.updateProfessor(id, professor));
     }

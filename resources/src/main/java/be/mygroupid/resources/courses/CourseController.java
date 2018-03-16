@@ -7,6 +7,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import javax.inject.Inject;
+import javax.ws.rs.QueryParam;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -36,6 +37,15 @@ public class CourseController {
 
     @GetMapping(path = "/{id}", produces = APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.OK)
+    public List<CourseDto> getCoursesWithSpecifiedStudyPoints(@QueryParam("studypoints") double studyPoints) {
+        return courseService.getCourses().stream()
+                .filter(course->course.getStudyPoints() == studyPoints)
+                .map(courseMapper::toDto)
+                .collect(Collectors.toList());
+    }
+
+    @GetMapping(path = "/{id}", produces = APPLICATION_JSON_VALUE)
+    @ResponseStatus(HttpStatus.OK)
     public CourseDto getCourse(@PathVariable("id") Integer id) {
         return courseMapper
                 .toDto(courseService.getCourse(id));
@@ -43,16 +53,16 @@ public class CourseController {
 
     @PostMapping(consumes = APPLICATION_JSON_VALUE, produces = APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.CREATED)
-    public CourseDto createCourse(@RequestBody Course course) {
+    public CourseDto createCourse(@RequestBody CourseDto courseDto) {
         return courseMapper
-                .toDto(courseService.createCourse(course));
+                .toDto(courseService.createCourse(courseMapper.toDomain(courseDto)));
     }
 
     @PutMapping(path = "/{id}", consumes = APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.OK)
-    public CourseDto updateCourse(@PathVariable Integer id, @RequestBody Course course) {
+    public CourseDto updateCourse(@PathVariable Integer id, @RequestBody CourseDto courseDto) {
         return courseMapper
-                .toDto(courseService.updateCourse(id, course));
+                .toDto(courseService.updateCourse(id, courseMapper.toDomain(courseDto)));
     }
 
     @DeleteMapping(path = "/{id}")
