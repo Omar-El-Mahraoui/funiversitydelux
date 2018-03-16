@@ -1,7 +1,9 @@
 package be.mygroupid.domain.professors;
 
+import javax.inject.Named;
 import java.util.*;
 
+@Named
 public class ProfessorRepository {
 
     private static Integer databaseIndex = 0;

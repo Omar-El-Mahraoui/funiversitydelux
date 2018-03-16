@@ -1,7 +1,9 @@
 package be.mygroupid.domain.courses;
 
+import javax.inject.Named;
 import java.util.*;
 
+@Named
 public class CourseRepository {
 
     private static Integer databaseIndex = 0;

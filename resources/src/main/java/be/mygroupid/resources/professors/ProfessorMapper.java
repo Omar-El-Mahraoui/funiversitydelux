@@ -2,9 +2,13 @@ package be.mygroupid.resources.professors;
 
 import be.mygroupid.domain.professors.Professor;
 
+import javax.inject.Named;
+
 import static be.mygroupid.domain.professors.Professor.ProfessorBuilder.professor;
 
 // copied from example exercise
+
+@Named
 public class ProfessorMapper {
 
     ProfessorDto toDto(Professor professor) {

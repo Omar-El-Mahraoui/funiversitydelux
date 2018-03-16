@@ -9,10 +9,22 @@
     <version>1.0-SNAPSHOT</version>
     <packaging>pom</packaging>
 
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>1.5.9.RELEASE</version>
+    </parent>
+
+    <properties>
+        <maven.compiler.source.and.target>1.8</maven.compiler.source.and.target>
+        <start-class>be.mygroupid.application.Application</start-class>
+    </properties>
+
     <modules>
         <module>domain</module>
         <module>resources</module>
         <module>services</module>
+        <module>application</module>
     </modules>
 
     <dependencyManagement>
@@ -23,11 +35,36 @@
                 <version>${project.version}</version>
             </dependency>
             <dependency>
+                <groupId>be.mygroupid.funiversitydelux</groupId>
+                <artifactId>services</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>be.mygroupid.funiversitydelux</groupId>
+                <artifactId>resources</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
                 <groupId>javax.inject</groupId>
                 <artifactId>javax.inject</artifactId>
                 <version>1</version>
             </dependency>
         </dependencies>
     </dependencyManagement>
+
+    <build>
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-compiler-plugin</artifactId>
+                    <configuration>
+                        <source>${maven.compiler.source.and.target}</source>
+                        <target>${maven.compiler.source.and.target}</target>
+                    </configuration>
+                </plugin>
+            </plugins>
+        </pluginManagement>
+    </build>
 
 </project>
