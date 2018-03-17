@@ -6,9 +6,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import javax.inject.Inject;
-import javax.ws.rs.QueryParam;
 import java.util.List;
-import java.util.Map;
 import java.util.stream.Collectors;
 
 import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
