@@ -2,7 +2,6 @@ package be.mygroupid.services.courses;
 
 import be.mygroupid.domain.courses.Course;
 import be.mygroupid.domain.courses.CourseRepository;
-import be.mygroupid.domain.professors.Professor;
 import be.mygroupid.services.exceptions.IllegalFieldFoundException;
 import be.mygroupid.services.exceptions.IllegalFieldFoundException.CrudAction;
 import be.mygroupid.services.exceptions.UnknownResourceException;
@@ -40,10 +39,6 @@ public class CourseService {
         assertCourseIdIsNotPresent(course, CREATE);
         professorService.assertProfessorIsPresent(professorService.getProfessor(course.getProfessorId()));
         return courseRepository.storeCourse(course);
-    }
-
-    private void assertProfessorIdIsPresent(Course course, List<Professor> professors) {
-
     }
 
     public Course updateCourse(Integer id, Course course) {
