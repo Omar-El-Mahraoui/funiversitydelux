@@ -6,9 +6,12 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import javax.inject.Inject;
+import javax.ws.rs.QueryParam;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
+import static java.util.stream.Collectors.toList;
 import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 
 // copied code from example
@@ -30,16 +33,16 @@ public class CourseController {
     public List<CourseDto> getCourses() {
         return courseService.getCourses().stream()
                 .map(courseMapper::toDto)
-                .collect(Collectors.toList());
+                .collect(toList());
     }
 
-    @GetMapping(path = "/getCoursesByStudyPoints/{studyPoints}", produces = APPLICATION_JSON_VALUE)
+    @GetMapping(path = "/getCoursesByStudyPoints/?studyPoints={studyPoints}", produces = APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.OK)
-    public  List<CourseDto> getAllCoursesWithSpecifiedStudyPoints(@PathVariable("studyPoints") Integer studyPoints) {
+    public  List<CourseDto> getAllCoursesWithSpecifiedStudyPoints(@PathVariable("studyPoints") String studyPoints) {
         return courseService.getCourses().stream()
-                .filter(course->course.getStudyPoints() == studyPoints)
+                .filter(course->course.getStudyPoints() == Double.parseDouble(studyPoints))
                 .map(courseMapper::toDto)
-                .collect(Collectors.toList());
+                .collect(toList());
     }
 
     @GetMapping(path = "/{id}", produces = APPLICATION_JSON_VALUE)

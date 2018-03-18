@@ -4,7 +4,8 @@ package be.mygroupid.services.exceptions;
 public class IllegalFieldFoundException extends FuniversitydeluxException {
 
     public IllegalFieldFoundException(String field, String resource, CrudAction crudAction) {
-        super(String.format("No %s can be present on a %s object passed for %s", field, resource, crudAction.getLabel()));
+        super(String.format("No %s can be present on a %s object passed for %s"
+                , field, resource, crudAction.getLabel()));
     }
 
     public enum CrudAction{
