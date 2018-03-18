@@ -10,7 +10,7 @@ public class ProfessorRepository {
     private Map<Integer, Professor> professors;
 
     public ProfessorRepository() {
-        this.professors = new HashMap<Integer, Professor>();
+        this.professors = new HashMap<>();
         storeProfessor(new Professor("Albert1", "Einstein1"));
         storeProfessor(new Professor("Albert2", "Einstein1"));
         storeProfessor(new Professor("Albert3", "Einstein1"));

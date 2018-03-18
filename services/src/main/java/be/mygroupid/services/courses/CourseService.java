@@ -2,9 +2,11 @@ package be.mygroupid.services.courses;
 
 import be.mygroupid.domain.courses.Course;
 import be.mygroupid.domain.courses.CourseRepository;
+import be.mygroupid.domain.professors.Professor;
 import be.mygroupid.services.exceptions.IllegalFieldFoundException;
 import be.mygroupid.services.exceptions.IllegalFieldFoundException.CrudAction;
 import be.mygroupid.services.exceptions.UnknownResourceException;
+import be.mygroupid.services.professors.ProfessorService;
 
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -17,10 +19,12 @@ import static be.mygroupid.services.exceptions.IllegalFieldFoundException.CrudAc
 public class CourseService {
 
     private final CourseRepository courseRepository;
+    private final ProfessorService professorService;
 
     @Inject
-    public CourseService(CourseRepository courseRepository) {
+    public CourseService(CourseRepository courseRepository, ProfessorService professorService) {
         this.courseRepository = courseRepository;
+        this.professorService = professorService;
     }
 
     public List<Course> getCourses() {
@@ -34,7 +38,12 @@ public class CourseService {
 
     public Course createCourse(Course course) {
         assertCourseIdIsNotPresent(course, CREATE);
+        professorService.assertProfessorIsPresent(professorService.getProfessor(course.getProfessorId()));
         return courseRepository.storeCourse(course);
+    }
+
+    private void assertProfessorIdIsPresent(Course course, List<Professor> professors) {
+
     }
 
     public Course updateCourse(Integer id, Course course) {

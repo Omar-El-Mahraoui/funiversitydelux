@@ -10,7 +10,7 @@ public class CourseRepository {
     private Map<Integer, Course> courses;
 
     public CourseRepository() {
-        this.courses = new HashMap<Integer, Course>();
+        this.courses = new HashMap<>();
         storeCourse(new Course("java course 1",5.0, Category.COMPUTER_SCIENCES1, 0));
         storeCourse(new Course("java course 2",5.0, Category.COMPUTER_SCIENCES2, 1));
         storeCourse(new Course("java course 3",7.0, Category.COMPUTER_SCIENCES3, 2));
@@ -23,7 +23,7 @@ public class CourseRepository {
     }
 
     public List<Course> getCourses() {
-        return Collections.unmodifiableList(new ArrayList<Course>(courses.values()));
+        return Collections.unmodifiableList(new ArrayList<>(courses.values()));
     }
 
     public Course getCourse(Integer id) {

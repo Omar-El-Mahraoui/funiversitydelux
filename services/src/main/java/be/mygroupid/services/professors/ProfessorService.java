@@ -51,7 +51,7 @@ public class ProfessorService {
         professorRepository.deleteProfessor(id);
     }
 
-    private void assertProfessorIsPresent(Professor professor) {
+    public void assertProfessorIsPresent(Professor professor) {
         if (professor == null) {
             throw new UnknownResourceException("ID", Professor.class.getSimpleName());
         }
