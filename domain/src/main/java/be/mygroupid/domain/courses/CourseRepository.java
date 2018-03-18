@@ -39,4 +39,9 @@ public class CourseRepository {
         courses.remove(id);
     }
 
+    public void clear() {
+        databaseIndex = 0;
+        courses.clear();
+    }
+
 }
